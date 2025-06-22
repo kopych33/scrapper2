@@ -1,0 +1,11 @@
+const axios = require('axios');
+
+async function listCategories() {
+  const resp = await axios.get('https://api.marktplaats.nl/v1/categories', {
+    headers: { Accept: 'application/json' }
+  });
+  const categories = resp.data._embedded; // e.g. categories._embedded['mp:category']
+  console.log(JSON.stringify(categories, null, 2));
+}
+
+listCategories();
