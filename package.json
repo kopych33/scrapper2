@@ -7,16 +7,6 @@
     "task": "node src/main.js",
     "bump": "ncu -u -t minor"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PropAnt/marktplaats-scrapper.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/PropAnt/marktplaats-scrapper/issues"
-  },
-  "homepage": "https://github.com/PropAnt/marktplaats-scrapper#readme",
   "dependencies": {
     "axios": "^1.10.0",
     "dotenv": "^16.5.0",
