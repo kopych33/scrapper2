@@ -35,5 +35,3 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           BOT_API: ${{ secrets.BOT_API }}
 
-      - name: Debug environment (optional)
-        if: ${{ failure() }}
