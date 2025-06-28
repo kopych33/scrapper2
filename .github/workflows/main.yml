@@ -1,37 +1,29 @@
 name: Run Task
-
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *" # every 30 minutes
-
-permissions:
-  contents: write # Needed for git-auto-commit
+    - cron: "*/30 * * * *"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
         with:
-          node-version: '20' # Change if your bot uses a different version
+          ref: ${{ github.head_ref }}
 
-      - name: Install dependencies and run task
+      - name: Running
         run: |
-          echo "Cleaning npm cache..."
           npm cache clean --force
-
-          echo "Installing dependencies..."
           npm install
-
-          echo "Running custom task..."
           npm run task
         env:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           BOT_API: ${{ secrets.BOT_API }}
 
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update db.json with new listing IDs
+          branch: main
